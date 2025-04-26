@@ -1,4 +1,9 @@
 :root {
+  --font-sans: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  --spacing-unit: 8px;
+
   /** Base colors */
   --clr-dark-a0: #000000;
   --clr-light-a0: #ffffff;
@@ -66,9 +71,20 @@ html {
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  padding: calc(var(--spacing-unit) * 2);
   color: var(--clr-primary-a50);
   background-color: var(--clr-surface-a0);
-  padding-top: 0px; /* Optional space for sticky header */
+  line-height: 1.6;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.9em;
 }
