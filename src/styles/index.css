@@ -31,11 +31,21 @@
   --clr-surface-tonal-a30: #c5c9cc;
   --clr-surface-tonal-a40: #b9bdbf;
   --clr-surface-tonal-a50: #adb0b2;
+
+  /** Semantic Color Mapping */
+  --main-background: var(--clr-surface-a0); /* White */
+  --main-text: var(--clr-dark-a0); /* Black */
+  --primary-accent: var(--clr-primary-a0); /* Your main blue */
+  --subtle-border: var(--clr-surface-a20); /* Light gray */
+  --code-background: var(--clr-surface-a10); /* Off-white */
+  --code-text: var(--clr-dark-a0); /* Black */
+  --inline-code-background: var(--clr-surface-a20); /* Light gray */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /** Theme primary colors */
+    --clr-primary-a0: #007396;
     --clr-primary-a10: #3782a1;
     --clr-primary-a20: #5591ad;
     --clr-primary-a30: #6fa0b8;
@@ -57,29 +67,52 @@
     --clr-surface-tonal-a30: #5a5e60;
     --clr-surface-tonal-a40: #737779;
     --clr-surface-tonal-a50: #8e9092;
+
+    /* Semantic Color Mapping */
+    --main-background: var(--clr-surface-a0); /* Dark Gray */
+    --main-text: var(--clr-light-a0); /* White */
+    /* Optional: Use a lighter primary tint for better contrast in dark mode */
+    /* --primary-accent: var(--clr-primary-a50); */
+    --primary-accent: var(--clr-primary-a0); /* Sticking with base blue for now */
+    --subtle-border: var(--clr-surface-a20); /* Darker gray */
+    --code-background: var(--clr-surface-a10); /* Off-black */
+    --code-text: var(--clr-light-a0); /* White */
+    --inline-code-background: var(--clr-surface-a20); /* Darker gray */
   }
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-sans);
   font-weight: 400;
+  margin: 0;
   padding: calc(var(--spacing-unit) * 2);
-  color: var(--clr-primary-a50);
-  background-color: var(--clr-surface-a0);
+  color: var(--main-text);
+  background-color: var(--main-background);
   line-height: 1.6;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
+h1,
+h2,
+strong,
+b {
+  font-weight: 700;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+h1 {
+  color: var(--primary-accent);
+  border-bottom: 1px solid var(--subtle-border);
+  padding-bottom: var(--spacing-unit);
+}
+
+/* Apply monospace font to code elements */
 pre,
 code,
 kbd,
@@ -87,4 +120,31 @@ samp {
   font-family: var(--font-mono);
   font-weight: 400;
   font-size: 0.9em;
+  color: var(--code-text);
+}
+
+/* Style code blocks */
+pre {
+  background-color: var(--code-background);
+  border: 1px solid var(--subtle-border);
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  line-height: 1.4;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background-color: var(--inline-code-background);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+a {
+  color: var(--primary-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
