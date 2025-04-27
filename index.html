@@ -12,12 +12,103 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400&family=STIX+Two+Text:wght@400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/src/styles/index.css">
 </head>
 <body>
-    <h1>Welcome</h1>
-    <pre>some code?</pre>
+    <h1>Java Cheat Sheet</h1>
+
+    <h2>Strings</h2>
+
+    <h3>Sort characters in a string</h3>
+    <pre>
+var chars = aString.toCharArray();
+Arrays.sort(chars);
+var sortedString = new String(chars);</pre>
+
+    <h2>Random</h2>
+
+    All examples use <code>aRandom = new Random()</code>.
+
+    <h3>Random from half-closed interval <span class="math-notation">[a, b)</span></h3>
+
+    <pre>min + aRandom.nextInt(max - min);</pre>
+
+    <h3>Random from closed interval <span class="math-notation">[a, b]</span></h3>
+
+    <pre>min + aRandom.nextInt(max - min + 1);</pre>
+
+    <h3>Random element from a list</h3>
+
+    <pre>aList.get(aRandom.nextInt(aList.size()));</pre>
+    
+    <h3>Random element from a collection</h3>
+
+    <pre>
+aCollection.stream()
+  .skip(aRandom.nextInt(aCollection.size()))
+  .findFirst();</pre>
+
+    <h2>Array</h2>
+
+    <h3>Binary search on <u>sorted input</u></h3>
+    <pre>Arrays.binarySearch(nums, target);</pre>
+
+    <p>Returns the index of <code>target</code> or <span class="math-notation">-(inclusionPoint + 1)</span> (an involution).</p>
+
+    <h2>Map</h2>
+
+    <h3>Python's defaultdict</h3>
+
+    <pre>
+aMap.computeIfAbsent(key, _ -> new ArrayList&lt;&gt;()).add(2);</pre>
+
+    <h2>PriorityQueue</h2>
+
+    <h3>Basic operations</h3>
+
+    <pre>
+var minHeap = new PriorityQueue&lt;&gt;();
+
+var customComparator = Collections.reverseOrder();
+var maxHeap = new PriorityQueue&lt;&gt;(customComparator);
+
+heap.add(2);
+heap.add(3);
+heap.remove(3);        // Specific element
+int two = heap.poll(); // Top element
+</pre>
+
+    <h2>Stack</h2>
+
+    <h3>Basic operations</h3>
+    <pre>
+Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+stack.push(3);         // addFirst()
+stack.push(2);
+int two = stack.pop(); // removeFirst()
+</pre>
+
+    <h2>Queue</h2>
+
+    <h3>Basic operations</h3>
+    <pre>
+Deque&lt;Integer&gt; queue = new ArrayDeque&lt;&gt;();
+queue.add(2);          // addLast()
+queue.add(3);
+int two = queue.pop(); // removeFirst()
+</pre>
+    <h2>Maths</h2>
+
+    <h3>Involution</h3>
+
+    <p>A function is involutory if, applied twice, returns the original value: <span class="math-notation">f(f(x)) = x</span>.</p>
+    <p>Examples:</p>
+    <ul>
+        <li>Identity: <span class="math-notation">f(x) = x</span></li>
+        <li>Negation: <span class="math-notation">f(x) = -x</span></li>
+        <li>Binary search insertion point: <span class="math-notation">f(x) = -(x + 1)</span></li>
+    </ul>
 </body>
 </html>

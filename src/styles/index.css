@@ -1,12 +1,17 @@
 :root {
   --font-sans: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --font-math: "STIX Two Text", "Times New Roman", serif;
+  --text-size: 1rem;
+  --code-size: 0.9rem;
 
   --spacing-unit: 8px;
 
   /** Base colors */
   --clr-dark-a0: #000000;
   --clr-light-a0: #ffffff;
+  --text-color: var(--clr-dark-a0);
+  --code-color: var(--clr-dark-a0);
 
   /** Theme primary colors */
   --clr-primary-a0: #007396;
@@ -31,19 +36,14 @@
   --clr-surface-tonal-a30: #c5c9cc;
   --clr-surface-tonal-a40: #b9bdbf;
   --clr-surface-tonal-a50: #adb0b2;
-
-  /** Semantic Color Mapping */
-  --main-background: var(--clr-surface-a0); /* White */
-  --main-text: var(--clr-dark-a0); /* Black */
-  --primary-accent: var(--clr-primary-a0); /* Your main blue */
-  --subtle-border: var(--clr-surface-a20); /* Light gray */
-  --code-background: var(--clr-surface-a10); /* Off-white */
-  --code-text: var(--clr-dark-a0); /* Black */
-  --inline-code-background: var(--clr-surface-a20); /* Light gray */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /** Base colors */
+    --text-color: var(--clr-light-a0);
+    --code-color: var(--clr-light-a0);
+
     /** Theme primary colors */
     --clr-primary-a0: #007396;
     --clr-primary-a10: #3782a1;
@@ -67,27 +67,35 @@
     --clr-surface-tonal-a30: #5a5e60;
     --clr-surface-tonal-a40: #737779;
     --clr-surface-tonal-a50: #8e9092;
-
-    /* Semantic Color Mapping */
-    --main-background: var(--clr-surface-a0); /* Dark Gray */
-    --main-text: var(--clr-light-a0); /* White */
-    /* Optional: Use a lighter primary tint for better contrast in dark mode */
-    /* --primary-accent: var(--clr-primary-a50); */
-    --primary-accent: var(--clr-primary-a0); /* Sticking with base blue for now */
-    --subtle-border: var(--clr-surface-a20); /* Darker gray */
-    --code-background: var(--clr-surface-a10); /* Off-black */
-    --code-text: var(--clr-light-a0); /* White */
-    --inline-code-background: var(--clr-surface-a20); /* Darker gray */
   }
 }
 
+@media (max-width: 768px) {
+  :root {
+    --text-size: 0.9rem;
+    --code-size: 0.8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --text-size: 0.8rem;
+    --code-size: 0.7rem;
+  }
+}
+
+html {
+  color: var(--text-color);
+  background-color: var(--clr-surface-a0);
+}
+
 body {
+  max-width: 900px;
   font-family: var(--font-sans);
   font-weight: 400;
+  font-size: var(--text-size);
   margin: 0;
   padding: calc(var(--spacing-unit) * 2);
-  color: var(--main-text);
-  background-color: var(--main-background);
   line-height: 1.6;
   transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
@@ -107,9 +115,13 @@ h6 {
 }
 
 h1 {
-  color: var(--primary-accent);
-  border-bottom: 1px solid var(--subtle-border);
+  color: var(--clr-primary-a0);
+  border-bottom: 1px solid var(--clr-surface-a20);
   padding-bottom: var(--spacing-unit);
+}
+
+h2 {
+  color: var(--clr-primary-a10);
 }
 
 /* Apply monospace font to code elements */
@@ -119,14 +131,14 @@ kbd,
 samp {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 0.9em;
-  color: var(--code-text);
+  font-size: var(--code-size);
+  color: var(--code-color);
 }
 
 /* Style code blocks */
 pre {
-  background-color: var(--code-background);
-  border: 1px solid var(--subtle-border);
+  background-color: var(--clr-surface-a10);
+  border: 1px solid var(--clr-surface-a20);
   padding: 1em;
   border-radius: 4px;
   overflow-x: auto;
@@ -135,13 +147,23 @@ pre {
 
 /* Inline code */
 code:not(pre code) {
-  background-color: var(--inline-code-background);
+  background-color: var(--clr-surface-a20);
   padding: 0.2em 0.4em;
   border-radius: 3px;
+  white-space: nowrap;
+}
+
+math,
+.math-notation {
+  font-family: var(--font-math);
+  background-color: var(--clr-surface-a20);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  white-space: nowrap;
 }
 
 a {
-  color: var(--primary-accent);
+  color: var(--clr-primary-a0);
   text-decoration: none;
 }
 
